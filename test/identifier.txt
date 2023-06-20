@@ -1,0 +1,23 @@
+# Bare identifier
+
+page
+
+==>
+
+LiquidText(ID)
+
+# Repeating identifier
+
+data.organization.inboxes
+
+==>
+
+LiquidText(Path(ID,Prop(Dotted(ID)),Prop(Dotted(ID))))
+
+# Needs something after dot
+
+data.
+
+==>
+
+LiquidText(Path(ID,Prop(Dotted(⚠))))

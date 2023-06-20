@@ -1,0 +1,39 @@
+# Simple Integer
+
+42
+
+==>
+
+LiquidText(Literal(Number))
+
+# Zero By Itself Is Ok
+
+0
+
+==>
+
+LiquidText(Literal(Number))
+
+# Optional Minus Sign
+
+-53
+
+==>
+
+LiquidText(Literal(Number))
+
+# Decimal Digits
+
+123.4
+
+==>
+
+LiquidText(Literal(Number))
+
+# Must Have Digits After Decimal
+
+123.
+
+==>
+
+LiquidText(Literal(Number), ⚠)

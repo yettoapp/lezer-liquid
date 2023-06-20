@@ -1,0 +1,60 @@
+@top LiquidText { value | Statement }
+value { Literal | ID | Path }
+
+Literal { True | False | Number | String }
+
+Path { ID (Prop)+ }
+Prop { Bracketed | Dotted }
+Bracketed { "[" Element "]" }
+Dotted { "." ID }
+Element { Path | Number | String }
+
+Statement { FilterStatement | ConditionalStatement }
+
+FilterStatement { value ("|" Filter)+ }
+Left { Literal | Path | Range }
+Filter { ID (":" Args)? }
+
+ConditionalStatement { ConditionalKw value }
+Comp { CompOp value }
+Boolean { value (Comparison)? (LogicOp Boolean)+ }
+Comparison { CompOp value }
+ConditionalKw {  "if" | "unless" | "elsif" }
+CompOp { "==" | "<" | ">" | "<=" | ">=" | "!=" | "<>" | "contains" }
+LogicOp { "and" | "or" }
+Alternative { "else" FilterStatement }
+
+Args { Arg ("," Arg)* }
+Arg { Parg | Kwarg }
+Parg { Literal | Path }
+Kwarg { ID ":" Parg }
+
+Range { "(" Rangearg ".." Rangearg ")" }
+Rangearg { Number | Path }
+
+String { string }
+ID { word+ }
+
+@tokens {
+  True  { "true" }
+  False { "false" }
+
+  Number { '-'? int frac?  }
+  int  { '0' | $[1-9] @digit* }
+  frac { '.' @digit+ }
+
+  string { '"' char* '"' | "'" char* "'" }
+  char { $[\u{20}\u{21}\u{23}-\u{5b}\u{5d}-\u{10ffff}] }
+
+  word { @asciiLetter }
+  whitespace { $[ \n\r\t] }
+
+ "[" "]"
+}
+
+@skip { whitespace }
+list<item> { item ("," item)* }
+
+@external propSource liquidHighlighting from "./highlight"
+
+@detectDelim

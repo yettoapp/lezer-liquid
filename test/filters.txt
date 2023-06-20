@@ -1,0 +1,55 @@
+# Simple filter (one input, no args)
+
+"-19.86" | abs
+
+==>
+
+LiquidText(Statement(FilterStatement(Literal(String),Filter(ID))))
+
+# Multple filters (no args)
+
+" Hello world     " | strip | reverse
+
+==>
+
+LiquidText(Statement(FilterStatement(Literal(String),Filter(ID),Filter(ID))))
+
+# Single filters (with single args)
+
+42 | plus: 2
+
+==>
+
+LiquidText(Statement(FilterStatement(Literal(Number),Filter(ID,Args(Arg(Parg(Literal(Number))))))))
+
+# Multiple filters (with multiple single args)
+
+42 | plus: tax.value | times: 100.0 | ceil
+
+==>
+
+LiquidText(Statement(FilterStatement(Literal(Number),Filter(ID,Args(Arg(Parg(Path(ID,Prop(Dotted(ID))))))),Filter(ID,Args(Arg(Parg(Literal(Number))))),Filter(ID))))
+
+# Single filter (with multiple args)
+
+'title' | localize: "curriculum", "url"
+
+==>
+
+LiquidText(Statement(FilterStatement(Literal(String),Filter(ID,Args(Arg(Parg(Literal(String))),Arg(Parg(Literal(String))))))))
+
+# Filter needs ID on other side of pipe
+
+42 |
+
+==>
+
+LiquidText(Statement(FilterStatement(Literal(Number),⚠)))
+
+# Argument needs ID on other side of pipe
+
+42 | plus:
+
+==>
+
+LiquidText(Statement(FilterStatement(Literal(Number),Filter(ID,⚠))))

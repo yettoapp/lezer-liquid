@@ -1,0 +1,15 @@
+# True
+
+true
+
+==>
+
+LiquidText(Literal(True))
+
+# False
+
+false
+
+==>
+
+LiquidText(Literal(False))

@@ -1,0 +1,7 @@
+# Basic if with ==
+
+if product.title
+
+==>
+
+LiquidText(Statement(ConditionalStatement(ConditionalKw,Path(ID,Prop(Dotted(ID))))))

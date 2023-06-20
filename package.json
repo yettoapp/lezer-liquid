@@ -1,0 +1,39 @@
+{
+  "name": "@yettoapp/lezer-liquid",
+  "version": "1.0.0",
+  "description": "lezer-based Liquid grammar",
+  "main": "dist/index.cjs",
+  "type": "module",
+  "exports": {
+    "import": "./dist/index.es.js",
+    "require": "./dist/index.cjs"
+  },
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "author": {
+    "name": "Yetto",
+    "email": "info@yetto.app",
+    "url": "https://yetto.app"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@lezer/generator": "^1.0.0",
+    "mocha": "^9.0.1",
+    "rollup": "^2.52.2",
+    "@rollup/plugin-node-resolve": "^9.0.0"
+  },
+  "dependencies": {
+    "@lezer/highlight": "^1.0.0",
+    "@lezer/lr": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yettoapp/lezer-liquid.git"
+  },
+  "scripts": {
+    "build": "lezer-generator src/liquid.grammar -o src/parser && rollup -c",
+    "build-debug": "lezer-generator src/liquid.grammar --names -o src/parser && rollup -c",
+    "prepare": "npm run build",
+    "test": "npm run build && mocha test/test-liquid.js"
+  }
+}

@@ -1,0 +1,31 @@
+# Empty String, Double Quote
+
+""
+
+==>
+
+LiquidText(Literal(String))
+
+# Non-empty String, Double Quote
+
+"This is a boring old string"
+
+==>
+
+LiquidText(Literal(String))
+
+# Empty String, Single Quote
+
+''
+
+==>
+
+LiquidText(Literal(String))
+
+# Non-empty String, Single Quote
+
+'This is a boring old string'
+
+==>
+
+LiquidText(Literal(String))
