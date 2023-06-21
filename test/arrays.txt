@@ -1,0 +1,7 @@
+# Basic array access
+
+site.users[0]
+
+==>
+
+LiquidText(Expression(Identifier,PropertyAccessor(Identifier),IndexAccessor(IndexOpen,Index,IndexClose)))

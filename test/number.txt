@@ -4,7 +4,7 @@
 
 ==>
 
-LiquidText(Literal(Number))
+LiquidText(Expression(Literal(Number)))
 
 # Zero By Itself Is Ok
 
@@ -12,7 +12,7 @@ LiquidText(Literal(Number))
 
 ==>
 
-LiquidText(Literal(Number))
+LiquidText(Expression(Literal(Number)))
 
 # Optional Minus Sign
 
@@ -20,7 +20,7 @@ LiquidText(Literal(Number))
 
 ==>
 
-LiquidText(Literal(Number))
+LiquidText(Expression(Literal(Number)))
 
 # Decimal Digits
 
@@ -28,7 +28,7 @@ LiquidText(Literal(Number))
 
 ==>
 
-LiquidText(Literal(Number))
+LiquidText(Expression(Literal(Number)))
 
 # Must Have Digits After Decimal
 
@@ -36,4 +36,4 @@ LiquidText(Literal(Number))
 
 ==>
 
-LiquidText(Literal(Number), ⚠)
+LiquidText(Expression(Literal(Number)),⚠)

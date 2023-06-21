@@ -1,0 +1,15 @@
+# True
+
+true
+
+==>
+
+LiquidText(Expression(Literal(Boolean(true))))
+
+# False
+
+false
+
+==>
+
+LiquidText(Expression(Literal(Boolean(false))))

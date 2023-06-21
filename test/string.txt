@@ -4,7 +4,7 @@
 
 ==>
 
-LiquidText(Literal(String))
+LiquidText(Expression(Literal(String)))
 
 # Non-empty String, Double Quote
 
@@ -12,7 +12,7 @@ LiquidText(Literal(String))
 
 ==>
 
-LiquidText(Literal(String))
+LiquidText(Expression(Literal(String)))
 
 # Empty String, Single Quote
 
@@ -20,7 +20,7 @@ LiquidText(Literal(String))
 
 ==>
 
-LiquidText(Literal(String))
+LiquidText(Expression(Literal(String)))
 
 # Non-empty String, Single Quote
 
@@ -28,4 +28,4 @@ LiquidText(Literal(String))
 
 ==>
 
-LiquidText(Literal(String))
+LiquidText(Expression(Literal(String)))

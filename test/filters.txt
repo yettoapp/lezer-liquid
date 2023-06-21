@@ -4,7 +4,7 @@
 
 ==>
 
-LiquidText(Statement(FilterStatement(Literal(String),Filter(ID))))
+LiquidText(Statement(FilterStatement(Expression(Literal(String)),LiquidFilterSeparator,FilterName(Identifier))))
 
 # Multple filters (no args)
 
@@ -12,7 +12,7 @@ LiquidText(Statement(FilterStatement(Literal(String),Filter(ID))))
 
 ==>
 
-LiquidText(Statement(FilterStatement(Literal(String),Filter(ID),Filter(ID))))
+LiquidText(Statement(FilterStatement(Expression(Literal(String)),LiquidFilterSeparator,FilterName(Identifier),LiquidFilterSeparator,FilterName(Identifier))))
 
 # Single filters (with single args)
 
@@ -20,7 +20,7 @@ LiquidText(Statement(FilterStatement(Literal(String),Filter(ID),Filter(ID))))
 
 ==>
 
-LiquidText(Statement(FilterStatement(Literal(Number),Filter(ID,Args(Arg(Parg(Literal(Number))))))))
+LiquidText(Statement(FilterStatement(Expression(Literal(Number)),LiquidFilterSeparator,FilterName(Identifier),Args(Arg(Parg(Literal(Number)))))))
 
 # Multiple filters (with multiple single args)
 
@@ -28,7 +28,7 @@ LiquidText(Statement(FilterStatement(Literal(Number),Filter(ID,Args(Arg(Parg(Lit
 
 ==>
 
-LiquidText(Statement(FilterStatement(Literal(Number),Filter(ID,Args(Arg(Parg(Path(ID,Prop(Dotted(ID))))))),Filter(ID,Args(Arg(Parg(Literal(Number))))),Filter(ID))))
+LiquidText(Statement(FilterStatement(Expression(Literal(Number)),LiquidFilterSeparator,FilterName(Identifier),Args(Arg(Parg(Identifier,PropertyAccessor(Identifier)))),LiquidFilterSeparator,FilterName(Identifier),Args(Arg(Parg(Literal(Number)))),LiquidFilterSeparator,FilterName(Identifier))))
 
 # Single filter (with multiple args)
 
@@ -36,7 +36,7 @@ LiquidText(Statement(FilterStatement(Literal(Number),Filter(ID,Args(Arg(Parg(Pat
 
 ==>
 
-LiquidText(Statement(FilterStatement(Literal(String),Filter(ID,Args(Arg(Parg(Literal(String))),Arg(Parg(Literal(String))))))))
+LiquidText(Statement(FilterStatement(Expression(Literal(String)),LiquidFilterSeparator,FilterName(Identifier),Args(Arg(Parg(Literal(String))),Arg(Parg(Literal(String)))))))
 
 # Filter needs ID on other side of pipe
 
@@ -44,7 +44,7 @@ LiquidText(Statement(FilterStatement(Literal(String),Filter(ID,Args(Arg(Parg(Lit
 
 ==>
 
-LiquidText(Statement(FilterStatement(Literal(Number),⚠)))
+LiquidText(Statement(FilterStatement(Expression(Literal(Number)),LiquidFilterSeparator,⚠)))
 
 # Argument needs ID on other side of pipe
 
@@ -52,4 +52,4 @@ LiquidText(Statement(FilterStatement(Literal(Number),⚠)))
 
 ==>
 
-LiquidText(Statement(FilterStatement(Literal(Number),Filter(ID,⚠))))
+LiquidText(Statement(FilterStatement(Expression(Literal(Number)),LiquidFilterSeparator,FilterName(Identifier),⚠)))

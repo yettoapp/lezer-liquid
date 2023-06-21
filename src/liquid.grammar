@@ -1,60 +1,73 @@
-@top LiquidText { value | Statement }
-value { Literal | ID | Path }
+@top LiquidText { Expression | Statement }
+@skip { whitespace }
+@precedence {
+  whitespace,
+  cond,
+  comp,
+  identifier,
+  Literal,
+  and @left,
+  or @left
+}
 
-Literal { True | False | Number | String }
+list<item> { item ("," item)* }
+kw<term> { @specialize[@name={term}]<identifier, term> }
 
-Path { ID (Prop)+ }
-Prop { Bracketed | Dotted }
-Bracketed { "[" Element "]" }
-Dotted { "." ID }
-Element { Path | Number | String }
+Expression {
+  Identifier (PropertyAccessor | IndexAccessor)* |
+  Literal
+}
+
+Literal { Boolean | Number | String }
+String { string }
+Boolean { kw<"true"> | kw<"false"> }
+Identifier { identifier }
+
+PropertyAccessor {
+  "." Identifier
+}
+
+IndexAccessor {
+  IndexOpen { "[" }
+  Index
+  IndexClose { "]" }
+}
 
 Statement { FilterStatement | ConditionalStatement }
 
-FilterStatement { value ("|" Filter)+ }
-Left { Literal | Path | Range }
-Filter { ID (":" Args)? }
-
-ConditionalStatement { ConditionalKw value }
-Comp { CompOp value }
-Boolean { value (Comparison)? (LogicOp Boolean)+ }
-Comparison { CompOp value }
-ConditionalKw {  "if" | "unless" | "elsif" }
-CompOp { "==" | "<" | ">" | "<=" | ">=" | "!=" | "<>" | "contains" }
-LogicOp { "and" | "or" }
-Alternative { "else" FilterStatement }
+FilterStatement {
+  Expression
+  (LiquidFilterSeparator { "|" }
+  FilterName { Identifier }
+  (":" Args)?)+
+}
 
 Args { Arg ("," Arg)* }
 Arg { Parg | Kwarg }
-Parg { Literal | Path }
-Kwarg { ID ":" Parg }
+Parg { Literal | Identifier (PropertyAccessor | IndexAccessor)* }
+Kwarg { Identifier ":" Parg }
 
-Range { "(" Rangearg ".." Rangearg ")" }
-Rangearg { Number | Path }
-
-String { string }
-ID { word+ }
+ConditionalStatement { Conditional Bool }
+Bool { Expression (Comparison)? (LogicalOperator Bool)* }
+Comparison { ComparisonOperator Expression }
+Conditional {  !cond (kw<"if"> | kw<"unless"> | kw<"elsif">) }
+ComparisonOperator { !comp ("==" | "<" | ">" | "<=" | ">=" | "!=" | "<>" | kw<"contains">) }
+LogicalOperator { !and kw<"and"> | !or kw<"or"> }
+Alternative { "else" FilterStatement }
 
 @tokens {
-  True  { "true" }
-  False { "false" }
-
   Number { '-'? int frac?  }
   int  { '0' | $[1-9] @digit* }
   frac { '.' @digit+ }
 
+  Index { @digit+ }
+
   string { '"' char* '"' | "'" char* "'" }
   char { $[\u{20}\u{21}\u{23}-\u{5b}\u{5d}-\u{10ffff}] }
 
-  word { @asciiLetter }
-  whitespace { $[ \n\r\t] }
+  letter { $[_a-zA-Z\u00A1-\u00ff] }
+  identifier { letter (letter | @digit)* }
 
- "[" "]"
+  whitespace { $[ \n\r\t] }
 }
 
-@skip { whitespace }
-list<item> { item ("," item)* }
-
-@external propSource liquidHighlighting from "./highlight"
-
-@detectDelim

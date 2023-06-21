@@ -4,7 +4,7 @@ page
 
 ==>
 
-LiquidText(ID)
+LiquidText(Expression(Identifier))
 
 # Repeating identifier
 
@@ -12,7 +12,7 @@ data.organization.inboxes
 
 ==>
 
-LiquidText(Path(ID,Prop(Dotted(ID)),Prop(Dotted(ID))))
+LiquidText(Expression(Identifier,PropertyAccessor(Identifier),PropertyAccessor(Identifier)))
 
 # Needs something after dot
 
@@ -20,4 +20,4 @@ data.
 
 ==>
 
-LiquidText(Path(ID,Prop(Dotted(⚠))))
+LiquidText(Expression(Identifier,PropertyAccessor(⚠)))

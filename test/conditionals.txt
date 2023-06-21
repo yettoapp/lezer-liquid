@@ -1,7 +1,39 @@
-# Basic if with ==
+# Basic if
 
 if product.title
 
 ==>
 
-LiquidText(Statement(ConditionalStatement(ConditionalKw,Path(ID,Prop(Dotted(ID))))))
+LiquidText(Statement(ConditionalStatement(Conditional(if),Bool(Expression(Identifier,PropertyAccessor(Identifier))))))
+
+# Basic if with equals
+
+if product.title == "WOW"
+
+==>
+
+LiquidText(Statement(ConditionalStatement(Conditional(if),Bool(Expression(Identifier,PropertyAccessor(Identifier)),Comparison(ComparisonOperator,Expression(Literal(String)))))))
+
+# Basic if with <
+
+if product.price < 400
+
+==>
+
+LiquidText(Statement(ConditionalStatement(Conditional(if),Bool(Expression(Identifier,PropertyAccessor(Identifier)),Comparison(ComparisonOperator,Expression(Literal(Number)))))))
+
+# Basic if with contains
+
+if product.name contains "something"
+
+==>
+
+LiquidText(Statement(ConditionalStatement(Conditional(if),Bool(Expression(Identifier,PropertyAccessor(Identifier)),Comparison(ComparisonOperator(contains),Expression(Literal(String)))))))
+
+# Basic if with logical and
+
+if product.price > 5 and product.name != "something"
+
+==>
+
+LiquidText(Statement(ConditionalStatement(Conditional(if),Bool(Expression(Identifier,PropertyAccessor(Identifier)),Comparison(ComparisonOperator,Expression(Literal(Number))),LogicalOperator(and),Bool(Expression(Identifier,PropertyAccessor(Identifier)),Comparison(ComparisonOperator,Expression(Literal(String))))))))
