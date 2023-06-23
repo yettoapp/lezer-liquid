@@ -1,0 +1,16 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "package.json"
+
+jobs:
+  node:
+    uses: yettoapp/actions/.github/workflows/node_package_release.yml@main
+    secrets:
+      npm_api_key: ${{ secrets.SISYPHUS_NPM_API_KEY }}
+      gh_token: ${{ secrets.GH_SISYPHUS_YETTO_REPO_TOKEN }}
