@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  pull_request_target:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GH_SISYPHUS_YETTO_REPO_TOKEN }}
+
+      - uses: yettoapp/actions/run-node-tests@main
+        with:
+          github_token: ${{ secrets.GH_SISYPHUS_YETTO_REPO_TOKEN }}
