@@ -1,6 +1,6 @@
 {
   "name": "@yettoapp/lezer-liquid",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "lezer-based Liquid grammar",
   "main": "dist/index.cjs",
   "type": "module",
