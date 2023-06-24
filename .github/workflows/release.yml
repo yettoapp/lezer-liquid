@@ -13,4 +13,4 @@ jobs:
     uses: yettoapp/actions/.github/workflows/node_package_release.yml@main
     secrets:
       npm_api_key: ${{ secrets.SISYPHUS_NPM_API_KEY }}
-      gh_token: ${{ secrets.GH_SISYPHUS_YETTO_REPO_TOKEN }}
+      gh_token: ${{ secrets.GITHUB_TOKEN }}
