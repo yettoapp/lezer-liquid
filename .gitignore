@@ -1,4 +1,5 @@
 /node_modules/
 /src/parser.*
-/dist
 .cache
+/dist/*
+!/dist/index.d.ts
