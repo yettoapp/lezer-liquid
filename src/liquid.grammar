@@ -71,3 +71,6 @@ Alternative { "else" FilterStatement }
   whitespace { $[ \n\r\t] }
 }
 
+@external propSource liquidHighlighting from "./highlight"
+
+@detectDelim
