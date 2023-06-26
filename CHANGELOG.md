@@ -1,3 +1,9 @@
+## [v0.0.10] - 26-06-2023
+## What's Changed
+* Attempt more highlighting by @gjtorikian in https://github.com/yettoapp/lezer-liquid/pull/9
+
+
+**Full Changelog**: https://github.com/yettoapp/lezer-liquid/compare/v0.0.9...v0.0.10
 ## [v0.0.9] - 26-06-2023
 ## What's Changed
 * Export highlighting rules by @gjtorikian in https://github.com/yettoapp/lezer-liquid/pull/8
